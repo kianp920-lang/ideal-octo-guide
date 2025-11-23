@@ -7,7 +7,9 @@ html, body {
   padding: 0;
   border: 0;
   overflow: hidden;
-  background: #000;
+  background: linear-gradient(135deg, #0a1628 0%, #0f2847 25%, #1a4d7a 50%, #0f2847 75%, #0a1628 100%);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
   width: 100%;
   height: 100%;
   height: 100dvh;
@@ -16,6 +18,15 @@ html, body {
   left: 0;
   right: 0;
   bottom: 0;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 #root {
@@ -30,13 +41,30 @@ html, body {
 }
 
 spline-viewer {
-  width: 100%;
-  height: 100%;
+  width: 120%;
+  height: 120%;
   display: block;
   position: fixed;
-  top: 0;
-  left: 0;
+  top: -10%;
+  left: -10%;
   padding: max(env(safe-area-inset-top), 0px) max(env(safe-area-inset-right), 0px) max(env(safe-area-inset-bottom), 0px) max(env(safe-area-inset-left), 0px);
+  box-sizing: border-box;
+  transform: scale(1.2);
+}
+
+.page-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-content {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 2rem;
   box-sizing: border-box;
 }
 
@@ -96,10 +124,17 @@ spline-viewer {
   opacity: 0.9;
 }
 
+.logo-image {
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: contain;
+  border-radius: 0.5rem;
+}
+
 .logo-icon {
   width: 2.25rem;
   height: 2.25rem;
-  background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+  background: linear-gradient(135deg, #1e90ff 0%, #0066cc 100%);
   border-radius: 0.625rem;
   display: flex;
   align-items: center;
@@ -107,7 +142,7 @@ spline-viewer {
   font-size: 1.2rem;
   font-weight: 700;
   color: #ffffff;
-  box-shadow: 0 6px 20px rgba(0, 212, 255, 0.35);
+  box-shadow: 0 6px 20px rgba(30, 144, 255, 0.35);
   position: relative;
 }
 
@@ -115,7 +150,7 @@ spline-viewer {
   content: '';
   position: absolute;
   inset: -2px;
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.4) 0%, rgba(0, 100, 150, 0.2) 100%);
+  background: linear-gradient(135deg, rgba(30, 144, 255, 0.4) 0%, rgba(0, 102, 204, 0.2) 100%);
   border-radius: 0.625rem;
   opacity: 0.6;
   z-index: -1;
